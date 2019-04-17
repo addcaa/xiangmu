@@ -168,9 +168,11 @@
                 var goods_id=_this.parents('body').find('td').attr('goods_id');
                 // console.log(goods_id);
                 $.post(
-                    'caradd',
+                    'add',
+
                     {buy_number:buy_number,goods_id:goods_id},
                     function(res){
+                        // consloe.log(res);
                         layer.msg(res.msg,{icon:res.code});
                         if(res.code==1){
                             location.href="car"
@@ -183,7 +185,7 @@
                 );
             })
             //收藏
-            $(".shoucang").click(function(){
+          $(".shoucang").click(function(){
                 // alert(11);
                 var _this=$(this);
                 var goods_id=_this.parents('table').find('td').attr('goods_id');

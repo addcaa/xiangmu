@@ -34,16 +34,16 @@
        <tr>
        @foreach($arr as $v)
         <td width="50%">
-            <h3>订单号：{{$v->order_no}}</h3>
+            订单号：<h3>{{$v->order_no}}</h3>
             <time>创建日期：2015-8-11<br />失效日期：2015-9-12</time>
-            <strong class="orange">¥{{$v->order_num}}</strong>
+            ¥<strong class="orange">{{$v->order_num}}</strong>
         </td>
        @endforeach
 
         <td align="right"><span class="orange">等待支付</span></td>
        </tr>
       </table>
-     </div><!--dingdanlist/-->
+     </div>
      <div class="succTi orange">请您尽快完成付款，否则订单将被取消</div>
 
     </div><!--content/-->
@@ -53,7 +53,7 @@
      <table>
       <tr>
        <td width="50%"><a href="/goods/prolist" class="jiesuan" style="background:#5ea626;">继续购物</a></td>
-       <td width="50%"><a href="/goods/orrder/{{$v->order_no}}" class="jiesuan">立即支付</a></td>
+       <td width="50%"><a href="/wxpay/test/{{$v->order_no}}" id="zhifu"class="jiesuan">立即支付</a></td>
       </tr>
      </table>
     </div><!--gwcpiao/-->
@@ -70,3 +70,22 @@
 	</script>
   </body>
 </html>
+<script>
+    $(function(){
+        $("#zhifu").click(function(){
+            // echo "111";
+            // alert(11);
+            var order_no=$(this).parents("body").find('h3').html();
+            var order_num=$(this).parents("body").find('strong').html()
+            // console.log(order_num );
+            $.post(
+                '/wxpay/test',
+                {order_no:order_no,order_num:order_num},
+                function(res){
+                    // console.log(res);
+                    location.href="/wxpay/test"
+                }
+            );
+        })
+    })
+</script>

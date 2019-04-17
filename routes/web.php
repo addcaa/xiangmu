@@ -54,6 +54,8 @@ Route::any('goods/prolist','GoodsController@prolist');
 Route::any('goods/typeid','GoodsController@typeid');
 Route::any('goods/div','GoodsController@div');
 Route::any('goods/caradd','GoodsController@caradd');
+Route::any('goods/add','GoodsController@add');
+
 Route::any('goods/car','GoodsController@car');
 Route::any('goods/ace','GoodsController@ace');
 Route::any('goods/gercarPrice','GoodsController@gercarPrice');
@@ -69,7 +71,9 @@ Route::any('goods/jiesuan','GoodsController@jiesuan');
 Route::any('goods/orrder/{id}','GoodsController@orrder');
 Route::any('goods/alipay','GoodsController@alipay');
 Route::any('goods/tell','GoodsController@tell');
-
+//支付
+Route::get('wxpay/test/{id}','WxPayController@test');
+Route::post('wxpay/notify','WxPayController@notify');
 
 
 

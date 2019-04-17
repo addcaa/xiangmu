@@ -363,13 +363,13 @@ class GoodsController extends Controller{
             ];
             $detaires=DB::table('goods')->where($where)->update(['goods_num'=>$v->goods_num-$v->buy_number]);
         }
-        foreach($goodsinfo as $k=>$v){
-            $where=[
-                'goods_id'=>$v->goods_id,
-                'id'=>session('user.id')
-            ];
-            $car=DB::table('car')->where(['goods_id'=>$goods_id])->update(['is_del'=>2]);
-        }
+        // foreach($goodsinfo as $k=>$v){
+        //     $where=[
+        //         'goods_id'=>$v->goods_id,
+        //         'id'=>session('user.id')
+        //     ];
+        //     $car=DB::table('car')->where(['goods_id'=>$goods_id])->update(['is_del'=>2]);
+        // }
         if($arr=='true'&&$detailarr=='true'&&$addarr=='true'){
             session(['ordere_id'=>$ordere_id]);
             return ['code'=>1,'font'=>"提交成功"];
@@ -378,9 +378,9 @@ class GoodsController extends Controller{
         }
 
     }
-    //订单号
+    /*订单号*/
     public function rand(){
-        return rand(11111,99999);
+        return time().rand(11111,99999);
     }
     //**订单提交成功 */
     public function success(){
@@ -391,7 +391,7 @@ class GoodsController extends Controller{
         return view('goods/success',['arr'=>$arr]);
     }
     public function orrder($id){
-        // dd($id);
+        // dd($id);die;
         $where=[
             'order_no'=>$id
         ];
@@ -429,5 +429,15 @@ class GoodsController extends Controller{
         $str=var_export($arr,true);//初始化
         file_put_contents("/tmp/alipay.log",$str,FILE_APPEND); //生成日志
 
+    }
+    /**微信支付 */
+    public function essl($id){
+        // echo $id;
+        $where=[
+            'order_no'=>$id
+        ];
+        $order=DB::table('ordere')->select(['order_num','order_no'])->where($where)->first();
+        // echo "11";
+        // print_r($order);die;
     }
 }
