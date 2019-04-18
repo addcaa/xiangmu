@@ -62,17 +62,17 @@ class LoginContoller extends Controller
         //638615
         $code=session('email.code');
         // dd($code);
-        if($data['address']!=$code){
-            return ['code'=>2,'font'=>"验证码不一致"];
-        }
-        // echo "11";
-        $email=session('email.email');
-        if($data['email']!==$email){
-            return ['code'=>2,'font'=>"账号不一致"];
-        }
-        if($data['password']!=$data['pwd']){
-            return ['code'=>2,'font'=>"密码不一致"];
-        }
+        // if($data['address']!=$code){
+        //     return ['code'=>2,'font'=>"验证码不一致"];
+        // }
+        // // echo "11";
+        // $email=session('email.email');
+        // if($data['email']!==$email){
+        //     return ['code'=>2,'font'=>"账号不一致"];
+        // }
+        // if($data['password']!=$data['pwd']){
+        //     return ['code'=>2,'font'=>"密码不一致"];
+        // }
         // dd($code);
         $data['password']=encrypt($data['password']);
 
